@@ -21,8 +21,8 @@
             .hash = "mime-3.0.0-zwmL--0gAAByELrj57sRm2EFBRzjKLFrMgHQcs7sFZev",
         },
         .wuffs = .{
-            .url = "git+https://github.com/allyourcodebase/wuffs#5ea19ed8a0b78e3ab3d3d4d016d8b49e1af107a2",
-            .hash = "wuffs-0.4.0-alpha.9+3837.20240914-3CHJgZULAAARz_ehNESEv1jtLWo3q8nOTqNWH3-vADsK",
+            .url = "git+https://github.com/Altagos/wuffs?ref=main#ff37fe84b125cd51141e0004363f9301e4d39975",
+            .hash = "wuffs-0.4.0-alpha.9+3837.20240914-3CHJgZ4LAAAdnj55d6wGVBq62q6DYxNOFpclqOo3MhjM",
         },
         .frameworks = .{
             .url = "git+https://code.hexops.org/hexops/xcode-frameworks.git#8a1cfb373587ea4c9bb1468b7c986462d8d4e10e",
@@ -46,12 +46,12 @@
             .hash = "ziggy-0.2.0-kTg8v6TvBwDaJXZ-bHaKizTGqzwLLESmrR2bjWCXDHUf",
         },
         .supermd = .{
-            .url = "git+https://github.com/kristoff-it/supermd#da528ac38e6940d23b7c2bf611ccf01fe6231e82",
-            .hash = "supermd-0.1.0-3Mco3D69WADCswLaF7w1pp--DKXnkGXy-8aH7S5cVZs3",
+            .url = "git+https://github.com/Altagos/supermd?ref=main#29833b2a3387ced0b29dd14d2c92c08323d30c9e",
+            .hash = "supermd-0.1.0-3Mco3Ee9WAAQYAOhtpIfs1C6mHdMwtnJqt-TfcTmY879",
         },
         .translate_c = .{
-            .url = "git+https://codeberg.org/kristoff/translate-c?ref=0.17.x#c01b34d1e57010019d77ffef1dbc704af870a2eb",
-            .hash = "translate_c-0.0.0-Q_BUWrEwBwDpXYYuHRSbbDDpjB0NHXcusTe4yYJXzYlA",
+            .url = "git+https://codeberg.org/ziglang/translate-c?ref=main#fdf7dc05aaec07c5c0f0a4bfe060acf7e483f4a3",
+            .hash = "translate_c-0.0.0-Q_BUWvo6BwAVl3qDhMeQNrgCAljvDeGUnwqpnGvB0_YM",
         },
     },
     .paths = .{"."},
