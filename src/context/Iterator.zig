@@ -158,13 +158,13 @@ pub const LeavesIterator = struct {
         var next_page: *context.Page = undefined;
         var next_section_idx: usize = undefined;
 
-        for (lit.sections, 0..) |*s, section_idx| {
-            if (s.idx == s.page_indexes.len) continue;
-
+        outer: for (lit.sections, 0..) |*s, section_idx| {
             while (true) {
+                if (s.idx == s.page_indexes.len) continue :outer;
+
                 const page_idx = s.page_indexes[s.idx];
                 const page = &lit.pages[page_idx];
-                if (!page._parse.active) {
+                if (!page._parse.active or page._scan.subsection_id != 0) {
                     s.idx += 1;
                     continue;
                 }
