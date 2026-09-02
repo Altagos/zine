@@ -54,3 +54,8 @@
 # Empty expression
 [arst]()
 
+
+# [Heading with]($heading.id('bar')) text outside
+
+> # [Heading with]($block) text outside
+> In a block

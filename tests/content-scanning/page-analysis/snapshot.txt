@@ -72,6 +72,16 @@ content/ids.smd:12:1: error: unknown ref
 |    [arst]($link.ref("melon"))
 |    ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+content/parse.smd:8:1: error: markdown inline html syntax is forbidden
+|    <b>wrong</b>
+|    ^^^
+| -- note: superhtml supports `=html` code blocks as an alternative
+
+content/parse.smd:8:9: error: markdown inline html syntax is forbidden
+|    <b>wrong</b>
+|            ^^^^
+| -- note: superhtml supports `=html` code blocks as an alternative
+
 content/parse.smd:10:1: error: markdown inline html syntax is forbidden
 |    <div>wrong block-level html</div>
 |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -151,6 +161,11 @@ content/parse.smd:52:1: error: scripty expression in image syntax
 content/parse.smd:55:1: error: link syntax without link or scripty expression
 |    [arst]()
 |    ^^^^^^^^
+
+content/parse.smd:60:3: error: block/section heading with text outside of inner link
+|    > # [Heading with]($block) text outside
+|      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+| -- note: all text must be inside the inner link
 
 content/index.smd:17:1: error: missing site asset
 |    []($image.siteAsset('doesntexist.jpg')) //wrong
