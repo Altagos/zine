@@ -867,7 +867,7 @@ pub const Builtins = struct {
                 return .{ .page = other_page };
             }
 
-            const index_html: StringTable.String = @enumFromInt(11);
+            const index_html: StringTable.String = @fromBackingInt(@intCast(11));
 
             const v = &ctx._meta.build.variants[p._scan.variant_id];
 
@@ -961,7 +961,7 @@ pub const Builtins = struct {
                 return Optional.init(gpa, other_page);
             }
 
-            const index_html: StringTable.String = @enumFromInt(11);
+            const index_html: StringTable.String = @fromBackingInt(@intCast(11));
             const v = &ctx._meta.build.variants[p._scan.variant_id];
 
             var buf: [std.fs.max_path_bytes]u8 = undefined;
@@ -1023,7 +1023,7 @@ pub const Builtins = struct {
                 return context.Array.init(gpa, Value, pages.items) catch unreachable;
             }
 
-            const index_html: StringTable.String = @enumFromInt(11);
+            const index_html: StringTable.String = @fromBackingInt(@intCast(11));
 
             const v = &ctx._meta.build.variants[p._scan.variant_id];
 

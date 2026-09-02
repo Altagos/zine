@@ -421,6 +421,7 @@ fn scanContentDirInner(
 
             const index_page = try pages.addOne(gpa);
             index_page._parse.active = false;
+            index_page._parse.arena = .{};
             index_page._scan = .{
                 .file = .{
                     .path = content_sub_path,
@@ -495,6 +496,7 @@ fn scanContentDirInner(
 
             sp.* = @intCast(idx);
             p._parse.active = false;
+            p._parse.arena = .{};
             p._scan = .{
                 .file = .{
                     .path = content_sub_path,
