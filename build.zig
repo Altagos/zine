@@ -277,6 +277,11 @@ pub fn build(b: *std.Build) !void {
     const translate_c = b.dependency("translate_c", .{
         .optimize = .fast,
     });
+    wuffs.module("wuffs").addImport("c_builtins", translate_c.module("c_builtins"));
+    wuffs.module("wuffs").addImport("helpers", translate_c.module("helpers"));
+    const supermd_c = supermd.import_table.get("c").?;
+    supermd_c.addImport("c_builtins", translate_c.module("c_builtins"));
+    supermd_c.addImport("helpers", translate_c.module("helpers"));
 
     const release = b.step("release", "Create release builds of Zine");
     if (!preview and (std.mem.indexOf(u8, version, "dev") != null)) {
@@ -615,6 +620,11 @@ fn setupReleaseStep(
             .target = target,
             .optimize = optimize,
         });
+        wuffs.module("wuffs").addImport("c_builtins", translate_c.module("c_builtins"));
+        wuffs.module("wuffs").addImport("helpers", translate_c.module("helpers"));
+        const supermd_c = supermd.import_table.get("c").?;
+        supermd_c.addImport("c_builtins", translate_c.module("c_builtins"));
+        supermd_c.addImport("helpers", translate_c.module("helpers"));
 
         const treez = ts.module("treez");
 
