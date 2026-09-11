@@ -180,23 +180,32 @@ pub fn build(b: *std.Build) !void {
         "Include treesitter grammars for build-time syntax highlighting (enabled by default). Disabling reduces executable size significantly.",
     ) orelse true;
 
-    const zine_mod = b.createModule(.{
+    const single_threaded = b.option(
+        bool,
+        "single-threaded",
+        "build Zine in single-threaded mode",
+    ) orelse false;
+
+    const zine_mod_exe = b.createModule(.{
         .root_source_file = b.path("src/main.zig"),
         .target = target,
         .optimize = optimize,
-        .single_threaded = b.option(
-            bool,
-            "single-threaded",
-            "build Zine in single-threaded mode",
-        ) orelse false,
+        .single_threaded = single_threaded,
+        .sanitize_thread = tsan,
+    });
 
+    const zine_mod = b.addModule("zine", .{
+        .root_source_file = b.path("src/mod.zig"),
+        .target = target,
+        .optimize = optimize,
+        .single_threaded = single_threaded,
         .sanitize_thread = tsan,
     });
 
     // This is this up because otherwise lazy deps will hide the existence of this artifact
     const zine_exe = b.addExecutable(.{
         .name = "zine",
-        .root_module = zine_mod,
+        .root_module = zine_mod_exe,
     });
 
     const tracy = b.dependency("tracy", .{ .enable = enable_tracy });
@@ -332,16 +341,37 @@ pub fn build(b: *std.Build) !void {
             });
 
             const frameworks = b.lazyDependency("frameworks", .{}) orelse return;
+            zine_mod_exe.addIncludePath(frameworks.path("include"));
+            zine_mod_exe.addFrameworkPath(frameworks.path("Frameworks"));
+            zine_mod_exe.addLibraryPath(frameworks.path("lib"));
+            zine_mod_exe.linkFramework("CoreServices", .{});
+
             zine_mod.addIncludePath(frameworks.path("include"));
             zine_mod.addFrameworkPath(frameworks.path("Frameworks"));
             zine_mod.addLibraryPath(frameworks.path("lib"));
             zine_mod.linkFramework("CoreServices", .{});
+
             t.addIncludePath(frameworks.path("include"));
             t.addFrameworkPath(frameworks.path("Frameworks"));
             t.mod.addLibraryPath(frameworks.path("lib"));
             t.mod.linkFramework("CoreServices", .{});
+            zine_mod_exe.addImport("c", t.mod);
             zine_mod.addImport("c", t.mod);
         },
+    }
+
+    zine_mod_exe.addImport("ziggy", ziggy);
+    zine_mod_exe.addImport("scripty", scripty);
+    zine_mod_exe.addImport("supermd", supermd);
+    zine_mod_exe.addImport("superhtml", superhtml);
+    zine_mod_exe.addImport("zeit", zeit);
+    zine_mod_exe.addImport("options", options);
+    zine_mod_exe.addImport("tracy", tracy.module("tracy"));
+    zine_mod_exe.addImport("mime", mime.module("mime"));
+    zine_mod_exe.addImport("wuffs", wuffs.module("wuffs"));
+    if (highlight) {
+        zine_mod_exe.addImport("syntax", syntax.module("syntax"));
+        zine_mod_exe.addImport("treez", treez);
     }
 
     zine_mod.addImport("ziggy", ziggy);
@@ -369,7 +399,7 @@ pub fn build(b: *std.Build) !void {
     run_step.dependOn(&zine_run.step);
 
     const test_step = b.step("test", "build snapshot tests and diff the results");
-    setupSchemaCheck(b, target, zine_mod, test_step);
+    setupSchemaCheck(b, target, zine_mod_exe, test_step);
     try setupSnapshotTesting(b, target, zine_exe, test_step);
 }
 
