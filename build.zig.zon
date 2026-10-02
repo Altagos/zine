@@ -1,8 +1,8 @@
 .{
     .name = .zine,
-    .version = "0.14.0",
+    .version = "0.14.1",
     .fingerprint = 0xa466bcb520a7eea2,
-    .minimum_zig_version = "0.17.0-dev.1471+ff10b90bc",
+    .minimum_zig_version = "0.17.0-dev.2338+b46a7f3a2",
     .dependencies = .{
         .scripty = .{
             .url = "git+https://github.com/kristoff-it/scripty#51a03222e9a125a65888a5df6e2a41e36c86ccd5",
@@ -17,8 +17,8 @@
             .hash = "mime-3.0.0-zwmL--0gAAByELrj57sRm2EFBRzjKLFrMgHQcs7sFZev",
         },
         .wuffs = .{
-            .url = "git+https://github.com/Altagos/wuffs#777595f21cfd9531ba36f3930ecfa36624a27c81",
-            .hash = "wuffs-0.4.0-alpha.9+3837.20240914-3CHJgY8LAAAieltfwL0gQT_SXn3ZClSuZua5MKgFkGST",
+            .url = "git+https://github.com/allyourcodebase/wuffs#b410781f44698b221fb7c996323563f260eae944",
+            .hash = "wuffs-0.4.0-alpha.9+3837.20240914-3CHJgY8LAADtPnOWAFD0GgnP0MKcB9XPGy_WXENdJC6S",
         },
         .frameworks = .{
             .url = "git+https://code.hexops.org/hexops/xcode-frameworks.git#8a1cfb373587ea4c9bb1468b7c986462d8d4e10e",
@@ -26,8 +26,8 @@
             .lazy = true,
         },
         .superhtml = .{
-            .url = "git+https://github.com/altagos/superhtml#9e90c35d57b9f56436b7c213feb53cfcfefa33fc",
-            .hash = "superhtml-0.7.0-Y7MdPGukJgCa--lJfGy5cKeSN2wdCXryvHxvJopOjiKm",
+            .url = "git+https://github.com/kristoff-it/superhtml#f0deee80ae422938d5cdc43a5598c417670db38b",
+            .hash = "superhtml-0.7.0-Y7MdPGykJgDenn3V9JQFolYt1ZQF8QPlHTdjD4wFS6yq",
         },
         .zeit = .{
             .url = "git+https://github.com/rockorager/zeit#ed64c36035fe44d6372c20cbcd447b0090687167",
@@ -38,17 +38,24 @@
             .hash = "flow_syntax-0.7.2-X8jOoSuMAQBanH2g5oW4BQmkW6s5AdfrRUE2byWrMVKp",
         },
         .ziggy = .{
-            .url = "git+https://github.com/kristoff-it/ziggy#be51f4dfd95590eae7c8674d660c1f16edef116b",
-            .hash = "ziggy-0.2.0-kTg8v53yBwCAN_CrgG3Y_ngWnkUb971-w-0LdZlE8hYJ",
+            .url = "git+https://github.com/kristoff-it/ziggy#a170fe892d29087344244dec24888710f507f490",
+            .hash = "ziggy-0.2.0-kTg8v5XyBwAL-S3Ci2S2QXYbe0m30-xUIbblJHdFFkKd",
         },
         .supermd = .{
-            .url = "git+https://github.com/altagos/supermd#37cc212c95647641e1524b7271383119ddbecc62",
-            .hash = "supermd-0.1.0-3Mco3AS-WAB12uEBBGK_VmWK5zwoUOIvrpubYIznoOOV",
+            .url = "git+https://github.com/kristoff-it/supermd#38fcc2f0c065ba311cd9d18e1a48c8d975fc717e",
+            .hash = "supermd-0.1.0-3Mco3Fa_WAAiMH9Z7G_q7AScXO4M61_3rVSnP4WXt0zS",
         },
         .translate_c = .{
-            .url = "git+https://codeberg.org/ziglang/translate-c#0944784e197e419433a21d4b28bfc65e48e7d514",
-            .hash = "translate_c-0.0.0-Q_BUWo5NBwBs3K0a-B1XbxEF3gFdTb75VgOE0FL-2qKL",
+            .url = "git+https://codeberg.org/ziglang/translate-c#5c31f38abf3aba28535ea545a2f393716c553d2c",
+            .hash = "translate_c-0.0.0-Q_BUWo5NBwB68fI9lsRU6WtgtSy9jS5M3hCFAjSrnY78",
         },
     },
-    .paths = .{"."},
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "build",
+        "tests",
+        "src",
+        "LICENSE",
+    },
 }
